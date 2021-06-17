@@ -1,8 +1,9 @@
 import random
 from typing import List
+from .Shared import count_backpack_value, reverse
 
 
-def backpack(capacity: float, items: list):
+def backpackClimbing(capacity: float, items: list):
     current_state = [1 if random.random() < 0.5 else 0 for _ in range(len(items))]
     current_value = count_backpack_value(current_state, items, capacity)
 
@@ -18,10 +19,6 @@ def backpack(capacity: float, items: list):
             value_was_changed = True
 
     return current_state, current_value
-
-
-def reverse(__x: int):
-    return 0 if __x == 1 else 1
 
 
 def combine_ways(currentstate: List[int]) -> List[List[int]]:
@@ -40,14 +37,3 @@ def find_best_neighbour(stateList: List[List[int]], items: list, capacity: float
             new_state = state
 
     return new_state, new_value
-
-
-def count_backpack_value(backpackState: List[int], items: list, max_capacity: float) -> float:
-    total_weight = 0
-    total_value = 0
-    for state, item in zip(backpackState, items):
-        total_weight += state * float(item[0])
-        if total_weight > max_capacity:
-            return 0
-        total_value += state * float(item[0]) * float(item[1])
-    return total_value
