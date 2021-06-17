@@ -9,7 +9,7 @@ def find_random_neightbour(backpackState: List[int]) -> List[int]:
 
 
 def jump_probality(current_value, new_value, temperature):
-    return math.e ** (-1 * (abs(current_value - new_value) / temperature))
+    return math.e ** (-1 * (abs(current_value - new_value)) / temperature)
 
 
 def backpackCooling(capacity: float, items: list):
